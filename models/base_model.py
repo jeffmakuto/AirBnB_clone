@@ -35,9 +35,9 @@ class BaseModel():
             tform = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    self.__dict__[key] = datetime.strptime(value, tform)
+                    setattr(self, key, datetime.strptime(value, tform))
                 else:
-                    self.__dict__[key] = value
+                    setattr(self, key, value)
         else:
             models.storage.new(self)
 
