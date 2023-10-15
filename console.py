@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             not recognized
             Default behavior for cmd module when input is invalid
         """
-        argdict = {
+        arg_dict = {
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
@@ -56,9 +56,9 @@ class HBNBCommand(cmd.Cmd):
             match = re.search(r"\((.*?)\)", args[1])
             if match is not None:
                 command = [args[1][:match.span()[0]], match.group()[1:-1]]
-                if command[0] in argdict.keys():
+                if command[0] in arg_dict.keys():
                     call = "{} {}".format(args[0], command[1])
-                    return argdict[command[0]](call)
+                    return arg_dict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
 
