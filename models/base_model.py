@@ -2,9 +2,9 @@
 
 """Module defining all common attributes/methods for other classes"""
 
-import models
-from datetime import datetime
 import uuid
+from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -37,6 +37,8 @@ class BaseModel:
                     setattr(self, key, datetime.strptime(value, t_form))
                 else:
                     setattr(self, key, value)
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         """ Returns a formatted string """
@@ -48,6 +50,7 @@ class BaseModel:
             current datetime
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of __dict__ of
