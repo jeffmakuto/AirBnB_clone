@@ -6,6 +6,7 @@ import models
 from datetime import datetime
 import uuid
 
+
 class BaseModel:
     """ Defines common attributes/methods for other classes
         Public Instance Attributes:
@@ -33,11 +34,13 @@ class BaseModel:
         """ Returns a formatted string """
         return "[{}] ({}) {}".format(self.__class__.name__,
                                      self.id, self.__dict__)
+
     def save(self):
         """ Updates the public instance attribute updated_at with the
             current datetime
         """
         self.updated_at = datetime.now()
+
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of __dict__ of
             of the instance
