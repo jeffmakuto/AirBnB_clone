@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
             not recognized
             Default behavior for cmd module when input is invalid
         """
-        arg_dict = {
+        argdict = {
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
@@ -58,9 +58,9 @@ class HBNBCommand(cmd.Cmd):
             match = re.search(r"\((.*?)\)", args[1])
             if match is not None:
                 command = [args[1][:match.span()[0]], match.group()[1:-1]]
-                if command[0] in arg_dict.keys():
+                if command[0] in argdict.keys():
                     call = "{} {}".format(args[0], command[1])
-                    return arg_dict[command[0]](call)
+                    return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
 
@@ -128,13 +128,13 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 0 and args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            objs = []
+            objl = []
             for obj in models.storage.all().values():
                 if len(args) > 0 and args[0] == obj.__class__.__name__:
-                    objs.append(obj.__str__())
+                    objl.append(obj.__str__())
                 elif len(args) == 0:
-                    objs.append(obj.__str__())
-            print(objs)
+                    objl.append(obj.__str__())
+            print(objl)
 
     def do_count(self, arg):
         """Usage: count <class> or <class>.count()
@@ -167,10 +167,10 @@ class HBNBCommand(cmd.Cmd):
         if "{}.{}".format(args[0], args[1]) not in obj_dict.keys():
             print("** no instance found **")
             return False
-        if len(arg) == 2:
+        if len(args) == 2:
             print("** attribute name missing **")
             return False
-        if len(arg) == 3:
+        if len(args) == 3:
             try:
                 type(eval(args[2])) != dict
             except NameError:
@@ -179,20 +179,20 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) == 4:
             obj = obj_dict["{}.{}".format(args[0], args[1])]
-            if arg[2] in obj.__class__.__dict__.keys():
+            if args[2] in obj.__class__.__dict__.keys():
                 value_type = type(obj.__class__.__dict__[args[2]])
                 obj.__dict__[args[2]] = value_type(args[3])
             else:
                 obj.__dict__[args[2]] = args[3]
         elif type(eval(args[2])) == dict:
             obj = obj_dict["{}.{}".format(args[0], args[1])]
-            for key, value in eval(args[2]).items():
-                if (key in obj.__class__.__dict__.keys() and
-                        type(obj.__class__.__dict__[key]) in {str, int, float}):
-                    value_type = type(obj.__class__.__dict__[key])
-                    obj.__dict__[key] = value_type(value)
+            for k, v in eval(args[2]).items():
+                if (k in obj.__class__.__dict__.keys() and
+                        type(obj.__class__.__dict__[k]) in {str, int, float}):
+                    value_type = type(obj.__class__.__dict__[k])
+                    obj.__dict__[k] = value_type(v)
                 else:
-                    obj.__dict__[key] = value
+                    obj.__dict__[k] = v
         models.storage.save()
 
 
