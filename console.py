@@ -3,6 +3,7 @@
 """modules for the command interpreter"""
 
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -198,6 +199,34 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
 
         print(count)
+
+    def default(self, arg):
+        """ Override the default behavior of printing an error message
+            when the command is not recognized.
+
+            Default behavior for cmd module when input is invalid.
+        """
+        command_map = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+
+        parts = arg.split(".")
+        if len(parts) == 2:
+            command_name, rest = parts
+            params_match = re.search(r"\((.*?)\)", rest)
+            if params_match:
+                params = params_match.group(1)
+                if command_name in command_map:
+                    full_command = "{} {}".format(command_name, params)
+                    return command_map[command_name](full_command)
+
+        print("*** Unknown syntax: {}".format(arg))
+        return False
+
 
 
 if __name__ == '__main__':
