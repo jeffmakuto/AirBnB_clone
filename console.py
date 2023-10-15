@@ -13,12 +13,12 @@ from models.user import User
 from models.amenity import Amenity
 
 classes = {
-    "BaseModel": BaseModel, 
-    "User": User, 
+    "BaseModel": BaseModel,
+    "User": User,
     "State": State,
-    "Place": Place, 
-    "Amenity": Amenity, 
-    "Review": Review, 
+    "Place": Place,
+    "Amenity": Amenity,
+    "Review": Review,
     "City": City
 }
 
@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
-        """Exit the program."""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):
@@ -135,4 +135,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
