@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-
 """File Storage class rising from models"""
-from json import load, dump
+from json import loads, dump, dumps
 from os.path import exists
 from models import base_model
 from models import user
@@ -26,6 +25,8 @@ name_class = ["BaseModel", "City", "State",
 class FileStorage:
     """
     Class for the file storage
+    File used file.json
+    Begins with empty obj
     """
     __file_path = "file.json"
     __objects = {}
@@ -38,28 +39,28 @@ class FileStorage:
         """
         Sets the object with key into __objects{}
         """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        ind = "{}.{}".format(obj.__class__.__name__, obj.id)
+        FileStorage.__objects[ind] = obj
 
     def save(self):
         """
         Serializes __object to JSON file to path '__file_path'
         """
-        serialized_objects = {}
+        json_objects = {}
         for key in self.__objects:
-            serialized_objs[key] = self.__objects[key].to_dict()
-        with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.dump(serialized_objs, file)
+            json_obj[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w", encoding="utf-8") as f:
+            json.dump(json_obj, f)
 
     def reload(self):
         """
-        Deserialize json to __objects
+        Deserialze json to __objects
         """
         if exists(FileStorage.__file_path):
             # Done if json file exists, recorded in file_path
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:
-                dict_from_json = load(file)
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as doc:
+                dict_from_json = load(doc)
             for key, value in dict_from_json.items():
-                if key.split('.')[0] in class_name:
-                    # Deserialize indices
-                    FileStorage.__objects[key] = eval(class_name)(**value)
+                if key.split('.')[0] in name_class:
+                    # Deserialize indeces
+                    FileStorage.__objects[key] = eval(class_nam)(**value)
