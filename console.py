@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             class_name = args[1]
-            
+
             if class_name not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
             else:
@@ -53,7 +53,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """ Usage: show <class> <id> or <class>.show(<id>)
-            Display the string representation of a class instance of a given id.
+            Display the string representation of a class instance of a
+            given id.
         """
         args = arg.split()
 
@@ -165,7 +166,9 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = args_list[3]
 
             if hasattr(obj_instance, attribute_name):
-                setattr(obj_instance, attribute_name, type(getattr(obj_instance, attribute_name))(attribute_value))
+                setattr(obj_instance, attribute_name,
+                        type(getattr(obj_instance,
+                                     attribute_name))(attribute_value))
             else:
                 setattr(obj_instance, attribute_name, attribute_value)
 
@@ -173,7 +176,8 @@ class HBNBCommand(cmd.Cmd):
             attributes_dict = eval(args_list[2])
 
             for key, value in attributes_dict.items():
-                setattr(obj_instance, key, type(getattr(obj_instance, key))(value))
+                setattr(obj_instance, key,
+                        type(getattr(obj_instance, key))(value))
 
         models.storage.save()
 
@@ -226,7 +230,6 @@ class HBNBCommand(cmd.Cmd):
 
         print("*** Unknown syntax: {}".format(arg))
         return False
-
 
 
 if __name__ == '__main__':

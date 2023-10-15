@@ -26,7 +26,8 @@ class FileStorage:
         public instance methods:
             all(self): returns the dictionary __objects
             new(self, obj): sets in __objects the obj
-            save(self): serializes __objects to the JSON file(path: __file_path)
+            save(self): serializes __objects to the JSON file(path:
+            __file_path)
             reload(self): deserializes the JSON file to __objects (only if the
             JSON file (__file_path) exists; otherwise, do nothing. If the file
             doesn’t exist, no exception should be raised)
