@@ -31,13 +31,13 @@ class BaseModel():
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
-        if len(kwargs) != 0:
+        if kwargs:
             tform = "%Y-%m-%dT%H:%M:%S.%f"
-            for a, b in kwargs.items():
-                if a == "created_at" or a == "updated_at":
-                    self.__dict__[a] = datetime.strptime(b, tform)
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    self.__dict__[key] = datetime.strptime(value, tform)
                 else:
-                    self.__dict__[a] = b
+                    self.__dict__[key] = value
         else:
             models.storage.new(self)
 
@@ -60,8 +60,9 @@ class BaseModel():
             and the key/value pair of __class__ representing
             the class name of the object
         '''
-        new_diction = self.__dict__.copy()
-        new_diction['created_at'] = self.created_at.isoformat()
-        new_diction['updated_at'] = self.updated_at.isoformat()
-        new_diction['__class__'] = self.__class__.__name__
-        return new_diction
+        obj_dict = self.__dict__.copy()
+        obj_dict['__class__'] = self.__class__.__name__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+
+        return obj_dict
