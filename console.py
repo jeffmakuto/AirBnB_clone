@@ -33,9 +33,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """overides the default behavir of the emptyline method
-            of repeating the last nonempty command entered
-            it does nothing upon receiving an empty line.
+        """Does nothing if its an empty line.
         """
         pass
 
