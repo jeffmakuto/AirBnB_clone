@@ -12,7 +12,7 @@ import models
 
 class BaseModel:
     """
-    class that defines all common attributes and methods for other classes.
+    base class defining all common attributes and methods for other classes.
     """
     def __init__(self, **kwargs):
         """Initialize a new BaseModel instance with the given attributes."""
@@ -38,7 +38,7 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """Return the print/str representation of the BaseModel instance."""
+        """Return the string representation of the BaseModel instance."""
         # Get the class name and instance ID
         cls_name = type(self).__name__
         instance_id = getattr(self, "id", None)
