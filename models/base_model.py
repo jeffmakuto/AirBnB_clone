@@ -12,7 +12,7 @@ import models
 
 class BaseModel:
     """
-    base class defining all common attributes and methods for other classes.
+    class that defines all common attributes and methods for other classes.
     """
     def __init__(self, **kwargs):
         """Initialize a new BaseModel instance with the given attributes."""
@@ -25,22 +25,22 @@ class BaseModel:
         self.updated_at = datetime.now()
 
         # Set the date string format
-        t_form = "%Y-%m-%dT%H:%M:%S.%f"
+        tform = "%Y-%m-%dT%H:%M:%S.%f"
 
         # Update the instance attributes based on the given keyword arguments
         if kwargs:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
-                    setattr(self, k, datetime.strptime(v, t_form))
+                    setattr(self, k, datetime.strptime(v, tform))
                 else:
                     setattr(self, k, v)
         else:
             models.storage.new(self)
 
     def __str__(self):
-        """Return the string representation of the BaseModel instance."""
+        """Return the print/str representation of the BaseModel instance."""
         # Get the class name and instance ID
-        cls_name = type(self).__name__
+        clname = type(self).__name__
         instance_id = getattr(self, "id", None)
         # Get a dictionary of the instance attributes
         instance_attrs = vars(self).copy()
