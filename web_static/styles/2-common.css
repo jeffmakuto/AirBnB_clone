@@ -1,0 +1,9 @@
+/*
+ * Global styles
+ */
+
+/* Reset margin and padding for the whole document */
+body {
+	margin: 0;
+	padding: 0;
+}
