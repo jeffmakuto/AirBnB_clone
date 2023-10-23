@@ -1,5 +1,5 @@
 /*
- * Places class style
+ * === Places class style ===
  */
 
 /* Places style */
@@ -7,7 +7,7 @@
 	width: 390px;
 	padding: 20px;
 	margin: 20px;
-	border: 1px #FF5A5F;
+	border: 1px solid #ff5a5f;
 	border-radius: 4px;
 	display: inline-block;
 }

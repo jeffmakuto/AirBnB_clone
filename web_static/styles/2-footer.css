@@ -1,16 +1,16 @@
 /*
- * Footer tag
+ * === Footer style ===
  */
 
-/* Footer tag */
+/* Footer style */
 footer {
-	background-color: #00FF00;
-	position: absolute;
-	height: 60px;
-	width: 100%;
-	bottom: 0;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	display: flex;
+            text-align: center;
+            background-color: #0f0;
+            height: 60px;
+            width: 100%;
+            bottom: 0;
+            justify-content: center;
+            position: absolute;
+            align-items: center;
+            display: flex;
 }

@@ -1,9 +1,9 @@
 /*
- * Global styles
+ * === Global style ===
  */
 
-/* Reset margin and padding for the whole document */
+/* Global style */
 body {
-	margin: 0;
-	padding: 0;
+            margin: 0;
+            padding: 0;
 }

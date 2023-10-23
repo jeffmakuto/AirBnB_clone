@@ -18,7 +18,7 @@
 	width: 390px;
 	padding: 20px;
 	margin: 20px;
-	border: 1px #FF5A5F;
+	border: 1px solid #ff5a5f;
 	border-radius: 4px;
 }
 .places h2 {
@@ -38,8 +38,8 @@
 	min-width: 60px;
 	height: 60px;
 	font-size: 30px;
-	color: #FF5A5F;
-	border: 4px #FF5A5F;
+	color: #ff5a5f;
+	border: 4px solid #ff5a5f;
 	border-radius: 50%;
 	padding: 5px;
 	justify-content: center;
@@ -52,8 +52,8 @@
 
 .information {
 	height: 80px;
-	border-top:1px #DDDDDD;
-	border-bottom: 1px #DDDDDD;
+	border-top:1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 	display: flex;
 	justify-content: center;
 }
